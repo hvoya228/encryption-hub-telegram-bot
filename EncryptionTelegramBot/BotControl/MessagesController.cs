@@ -64,7 +64,7 @@ public static class MessagesController
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "EncryptionHub>Encryption> send me encryption method.",  
+                text: "\ud83d\udcac EncryptionHub>Encryption>Method> send me encryption method (check /methods).",  
                 cancellationToken: cancellationToken);
         }
         else if (message.Text.Contains("/decrypt"))
@@ -74,33 +74,58 @@ public static class MessagesController
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "EncryptionHub>Decryption> send me decryption method.",  
+                text: "\ud83d\udcac EncryptionHub>Decryption>Method> send me decryption method (check /methods).",  
                 cancellationToken: cancellationToken);
         }
         else if(message.Text.Contains('/') && _isEncryptionChosen)
         {
             _isEncryptionChosen = true;
             _isDecryptionChosen = false;
+            
+            if (!EncryptorsRepository.GetAvailableEncryptors().Contains(message.Text.Replace("/", string.Empty)))
+            {
+                await botClient.SendTextMessageAsync(
+                    chatId: message.Chat.Id,
+                    text: "\ud83d\uddef EncryptionHub>Encryption>Method>Error> unknown encryption method, use /methods.",  
+                    cancellationToken: cancellationToken);
+                return;
+            }
+            
             _encryptionMethod = message.Text.Replace("/", string.Empty);
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "EncryptionHub>Encrypt>Method> send me a text to encrypt.",  
+                text: "\ud83d\udcac EncryptionHub>Encryption>Method>Text> send me a text to encrypt.",  
                 cancellationToken: cancellationToken);
         }
         else if(message.Text.Contains('/') && _isDecryptionChosen)
         {
             _isDecryptionChosen = true;
             _isEncryptionChosen = false;
+            
+            if (!EncryptorsRepository.GetAvailableEncryptors().Contains(message.Text.Replace("/", string.Empty)))
+            {
+                await botClient.SendTextMessageAsync(
+                    chatId: message.Chat.Id,
+                    text: "\ud83d\uddef EncryptionHub>Encryption>Method>Error> unknown decryption method, use /methods.",  
+                    cancellationToken: cancellationToken);
+                return;
+            }
+            
             _encryptionMethod = message.Text.Replace("/", string.Empty);
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "EncryptionHub>Decrypt>Method> send me a text to decrypt.",  
+                text: "\ud83d\udcac EncryptionHub>Decryption>Method>Text> send me a text to decrypt.",  
                 cancellationToken: cancellationToken);
         }
         else if (_isEncryptionChosen && _encryptionMethod != string.Empty)
         {
+            await botClient.SendTextMessageAsync(
+                chatId: message.Chat.Id,
+                text: "\ud83d\udcac EncryptionHub>Encryption>Method>Text>Encrypting> Success, result:",  
+                cancellationToken: cancellationToken);
+            
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
                 text: EncryptorsRepository.Encrypt(message.Text, _encryptionMethod),  
@@ -114,6 +139,11 @@ public static class MessagesController
         {
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
+                text: "\ud83d\udcac EncryptionHub>Decryption>Method>Text>Decrypting> Success, result:",  
+                cancellationToken: cancellationToken);
+            
+            await botClient.SendTextMessageAsync(
+                chatId: message.Chat.Id,
                 text: EncryptorsRepository.Decrypt(message.Text, _encryptionMethod),  
                 cancellationToken: cancellationToken);
             
@@ -125,7 +155,7 @@ public static class MessagesController
         {
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "EncryptionHub>Error> unknown command, use /help.",  
+                text: "\ud83d\uddef EncryptionHub>Error> unknown command, use /help.",  
                 cancellationToken: cancellationToken);
         }
     }

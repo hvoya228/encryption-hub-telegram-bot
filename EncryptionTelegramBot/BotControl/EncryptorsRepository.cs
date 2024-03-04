@@ -1,3 +1,4 @@
+using System.Numerics;
 using EncryptionTelegramBot.Encryptors;
 
 namespace EncryptionTelegramBot.BotControl;
@@ -9,7 +10,7 @@ public static class EncryptorsRepository
         return new List<string>
         {
             "acc",
-            "sdes"
+            "byte"
         };
     }
     
@@ -20,7 +21,7 @@ public static class EncryptorsRepository
             return encryptor switch
             {
                 "acc" => AffineCaesarCipher.Encrypt(text),
-                "sdes" => SimplifiedDataEncryptionStandard.Encrypt(text),
+                "byte" => ByteEncryption.Encrypt(text),
                 _ => text
             };
         }
@@ -37,7 +38,7 @@ public static class EncryptorsRepository
             return encryptor switch
             {
                 "acc" => AffineCaesarCipher.Decrypt(text),
-                "sdes" => SimplifiedDataEncryptionStandard.Decrypt(text),
+                "byte" => ByteEncryption.Decrypt(text),
                 _ => text
             };
         }

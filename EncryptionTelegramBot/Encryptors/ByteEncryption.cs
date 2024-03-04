@@ -2,7 +2,7 @@ using System.Text;
 
 namespace EncryptionTelegramBot.Encryptors;
 
-public static class SimplifiedDataEncryptionStandard
+public static class ByteEncryption
 {
     public static string Encrypt(string plaintext) 
     {

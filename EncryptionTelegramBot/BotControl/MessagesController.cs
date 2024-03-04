@@ -64,7 +64,7 @@ public static class MessagesController
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\udcac EncryptionHub>Encryption>Method> send me encryption method (check /methods).",  
+                text: "\ud83d\udcac Send me encryption method (check /methods).",  
                 cancellationToken: cancellationToken);
         }
         else if (message.Text.Contains("/decrypt"))
@@ -74,7 +74,7 @@ public static class MessagesController
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\udcac EncryptionHub>Decryption>Method> send me decryption method (check /methods).",  
+                text: "\ud83d\udcac Send me decryption method (check /methods).",  
                 cancellationToken: cancellationToken);
         }
         else if(message.Text.Contains('/') && _isEncryptionChosen)
@@ -86,7 +86,7 @@ public static class MessagesController
             {
                 await botClient.SendTextMessageAsync(
                     chatId: message.Chat.Id,
-                    text: "\ud83d\uddef EncryptionHub>Encryption>Method>Error> unknown encryption method, use /methods.",  
+                    text: "\ud83d\uddef Unknown encryption method, use /methods.",  
                     cancellationToken: cancellationToken);
                 return;
             }
@@ -95,7 +95,7 @@ public static class MessagesController
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\udcac EncryptionHub>Encryption>Method>Text> send me a text to encrypt.",  
+                text: "\ud83d\udcac Send me a text to encrypt.",  
                 cancellationToken: cancellationToken);
         }
         else if(message.Text.Contains('/') && _isDecryptionChosen)
@@ -107,7 +107,7 @@ public static class MessagesController
             {
                 await botClient.SendTextMessageAsync(
                     chatId: message.Chat.Id,
-                    text: "\ud83d\uddef EncryptionHub>Encryption>Method>Error> unknown decryption method, use /methods.",  
+                    text: "\ud83d\uddef Unknown decryption method, use /methods.",  
                     cancellationToken: cancellationToken);
                 return;
             }
@@ -116,14 +116,14 @@ public static class MessagesController
             
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\udcac EncryptionHub>Decryption>Method>Text> send me a text to decrypt.",  
+                text: "\ud83d\udcac Send me a text to decrypt.",  
                 cancellationToken: cancellationToken);
         }
         else if (_isEncryptionChosen && _encryptionMethod != string.Empty)
         {
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\udcac EncryptionHub>Encryption>Method>Text>Encrypting> Success, result:",  
+                text: "\ud83d\udcac Success, result:",  
                 cancellationToken: cancellationToken);
             
             await botClient.SendTextMessageAsync(
@@ -139,7 +139,7 @@ public static class MessagesController
         {
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\udcac EncryptionHub>Decryption>Method>Text>Decrypting> Success, result:",  
+                text: "\ud83d\udcac Success, result:",  
                 cancellationToken: cancellationToken);
             
             await botClient.SendTextMessageAsync(
@@ -155,7 +155,7 @@ public static class MessagesController
         {
             await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "\ud83d\uddef EncryptionHub>Error> unknown command, use /help.",  
+                text: "\ud83d\uddef Unknown command, use /help.",  
                 cancellationToken: cancellationToken);
         }
     }

@@ -17,6 +17,7 @@ public static class MessagesContainer
     
     public const string EncryptionMethodsMessage = "\ud83d\udde8" + "\n" + "\n" +  
                                                   "affine caesar cipher => /acc" + "\n" +
+                                                  "byte encryption => /byte" + "\n" +
                                                   "simplified data encryption standart => /sdes";
     
     public const string AboutMessage = "\ud83d\udde8" + "\n" + "\n" +

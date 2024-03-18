@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Encryptors\SimplifiedDataEncryptionStandard.cs" />
       <Compile Remove="Encryptors\RivestShamirAdleman.cs" />
     </ItemGroup>
 

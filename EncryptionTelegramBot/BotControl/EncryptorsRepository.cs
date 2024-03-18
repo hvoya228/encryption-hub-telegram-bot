@@ -10,7 +10,8 @@ public static class EncryptorsRepository
         return new List<string>
         {
             "acc",
-            "byte"
+            "byte",
+            "sdes"
         };
     }
     
@@ -22,6 +23,7 @@ public static class EncryptorsRepository
             {
                 "acc" => AffineCaesarCipher.Encrypt(text),
                 "byte" => ByteEncryption.Encrypt(text),
+                "sdes" => SimplifiedDataEncryptionStandard.EncryptText(text),
                 _ => text
             };
         }
@@ -39,6 +41,7 @@ public static class EncryptorsRepository
             {
                 "acc" => AffineCaesarCipher.Decrypt(text),
                 "byte" => ByteEncryption.Decrypt(text),
+                "sdes" => SimplifiedDataEncryptionStandard.DecryptText(text),
                 _ => text
             };
         }
